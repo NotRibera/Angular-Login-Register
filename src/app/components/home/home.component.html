@@ -1,0 +1,50 @@
+<p>modify works!</p>
+<form [formGroup]="modifyForm" (ngSubmit)="submitDetails()">
+    <p-card header="Modify Details" [style]="{ width: '360px' }">
+      <div class="field">
+        <label for="fullName">FullName</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="fullName"
+          class="w-full"
+          name="fullName"
+          placeholder="Type your name"
+        />
+        <small
+          *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="fullName.errors?.['required']">Name is required.</div>
+          <div *ngIf="fullName.errors?.['pattern']">Enter a valid Name</div>
+        </small>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="email"
+          class="w-full"
+          name="email"
+          placeholder="Type your email"
+        />
+        <small
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Email should be valid</div>
+        </small>
+      </div>
+
+      <p-button
+        label="Modify Details"
+        styleClass="w-full"
+        [disabled]="modifyForm.invalid"
+        type="submit"
+      ></p-button>
+    </p-card>
+  </form>
+
+<p-button label="Sign out" (onClick)="logOut()"></p-button>
